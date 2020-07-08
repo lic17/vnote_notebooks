@@ -105,3 +105,15 @@ ip netns exec netns1 ip link set veth1 netns 1
 ## 1.7. VXLAN
 ## 1.8. Macvlan
 ## 1.9. IPvlan
+## 1.10 进入容器 ns
+获取容器的进程号
+```
+docker inspect 容器|grep Pid
+```
+执行如下命令，将进程网络命名空间恢复到主机目录，
+
+```
+ln -s /proc/容器进程号/ns/net /var/run/netns/容器
+```
+如果/var/run/netns目录不存在，以root用户手动创建目录即可。
+然后执行ip netns命令即可看到容器的网络命名空间。可执行网络相关命令来排查网络情况。
