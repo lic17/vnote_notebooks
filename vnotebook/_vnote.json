@@ -11,6 +11,12 @@
         },
         {
             "name": "istio"
+        },
+        {
+            "name": "linux"
+        },
+        {
+            "name": "vim"
         }
     ],
     "tags": [

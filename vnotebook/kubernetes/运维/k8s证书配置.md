@@ -58,3 +58,27 @@ kubeadm init phase certs etcd-server  --config kubeadm.yaml
 vim /etc/sysconfig/docker
 OPTIONS='--selinux-enabled --log-driver=json-file --signature-verification=false'
 ```
+
+## kubeconfig权限配置
+
+```
+# config
+apiVersion: v1
+kind: Config
+clusters:
+- cluster:
+    server: https://10.10.1.100:6443
+    certificate-authority-data: <这里省略>
+  name: k8s-dev
+users:
+- name: "devlog"
+  user:
+    token: <这里是解码后的token字符串>
+contexts:
+- context:
+    cluster: k8s-dev
+    user: "devlog"
+  name: devlog-ct
+preferences: {}
+current-context: devlog-ct
+```
