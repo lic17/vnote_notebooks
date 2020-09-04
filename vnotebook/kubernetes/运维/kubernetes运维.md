@@ -72,3 +72,11 @@ sysctl -p
 
 rm -rf /var/lib/kubelet/pki
 ```
+
+```
+kubectl -n  test patch  deployments.apps reviews-v1  -p '{"spec":{"template":{"metadata":{"annotations":{"linkedcare.io/jvm-enabled": "false", "linkedcare.io/skyworking-enabled": "false", "linkedcare.io/skyworking-injection": "false"}}}}}'
+```
+
+```
+kubectl get deployments.apps -n scrm-test| awk '{print $1}'|xargs  kubectl -n scrm-test patch deployments.apps -p '{"spec":{"template":{"metadata":{"annotations":{"linkedcare.io/jvm-enabled": "true", "linkedcare.io/skyworking-enabled": "true", "linkedcare.io/skyworking-injection": "true"}}}}}'
+```
