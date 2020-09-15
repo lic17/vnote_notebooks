@@ -13,6 +13,9 @@
         }
     ],
     "sub_directories": [
+        {
+            "name": "bpf"
+        }
     ],
     "version": "1"
 }
